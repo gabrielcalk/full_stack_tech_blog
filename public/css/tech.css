@@ -1,0 +1,32 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: rgb(235, 235, 235);
+}
+
+li{
+    font-size: 18px;
+}
+
+.menu_item:hover{
+    background-color: rgb(41, 32, 32);
+    -webkit-transition: 0.7s ease-out;
+    -moz-transition: 0.7s ease-out;
+    -o-transition: 0.7s ease-out;
+    transition: 0.7s ease-out;
+}
+
+.hide{
+    display: none;
+}
+
+
+#title:hover{
+    background-color: white;
+    color: black
+}
+

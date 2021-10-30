@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const exphbs = require('express-handlebars');
 
 // PORT
 const PORT = process.env.PORT || 3001;
@@ -9,6 +10,10 @@ const Post = require('./models/posts');
 const User = require('./models/users');
 const sequelize = require('./config/connection');
 
+// Inform Express.js on which template engine to use
+const hbs = exphbs.create({});
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
 
 // Login Router: /login
 const loginRouter = require('./controller/login');
@@ -26,10 +31,16 @@ app.use('/signup', signUpRouter)
 const dashboardRouter = require('./controller/dashboard/home')
 app.use('/dashboard', dashboardRouter)
 
+app.get('/', (req, res) =>{
+    res.render("home")
+})
+
+// 404 page
 app.use((req, res) =>{
     res.status(404).send('Pagina nao encotrada')
 })
 
+// Creating the tables (sync) and listen to one port
 sequelize.sync({alter: false}).then(() => {
     app.listen(PORT, () => console.log(`Listen to: http://localhost:${PORT}`))
     console.log('Added Tables')
