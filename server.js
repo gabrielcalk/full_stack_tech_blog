@@ -1,6 +1,4 @@
 const express = require('express');
-
-
 const app = express();
 
 // PORT
@@ -24,7 +22,13 @@ app.use('/post', postRouter)
 const signUpRouter = require('./controller/signup');
 app.use('/signup', signUpRouter)
 
+// Dashboard Router: /dashboard
+const dashboardRouter = require('./controller/dashboard/home')
+app.use('/dashboard', dashboardRouter)
 
+app.use((req, res) =>{
+    res.status(404).send('Pagina nao encotrada')
+})
 
 sequelize.sync({alter: false}).then(() => {
     app.listen(PORT, () => console.log(`Listen to: http://localhost:${PORT}`))

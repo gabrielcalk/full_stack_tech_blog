@@ -1,8 +1,16 @@
 const express = require('express');
-const router = express.Router();
+const dashboardRouter = express.Router();
 
-router.get('/', (req, res) =>{
+dashboardRouter.get('/', (req, res) =>{
     res.send('dashboard')
-})
+});
 
-module.exports = router;
+dashboardRouter.get('/post', (req, res) => {
+    res.send('dashboard - post')
+});
+
+dashboardRouter.get('/update', (req, res) =>{
+    res.send('dasboard - update')
+});
+
+module.exports = dashboardRouter;
