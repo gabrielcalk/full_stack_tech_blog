@@ -1,19 +1,16 @@
 const express = require('express')
 const homeRouter = express.Router()
-const Post = require('../models/posts')
-const User = require('../models/users')
+const {Post, User} = require('../models/associations')
 
 homeRouter.get('/', async (req, res) =>{
     try{
-        const user_data = await User.findAll({
-            attributes: {
-                exclude: ['email', 'password'],
-            }
-        });
         const post_data = await Post.findAll({
-            attributes: {
-                order: [['updated_at', 'DESC']]
-            }
+            include: [
+                {
+                    model: User,
+                    attributes: ["username"],
+                },
+            ],
         });
 
         const posts = post_data.map((post) => post.get({plain:true}));
