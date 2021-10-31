@@ -1,7 +1,9 @@
 const sequelize = require('../config/connection')
 const {Model, DataTypes} = require('sequelize')
 
-const User = sequelize.define('User',
+class User extends Model{}
+
+User.init(
     {
         id: {
             type: DataTypes.INTEGER,

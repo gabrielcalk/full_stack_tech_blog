@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path')
 const app = express();
 const exphbs = require('express-handlebars');
 
@@ -14,6 +15,10 @@ const sequelize = require('./config/connection');
 const hbs = exphbs.create({});
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Login Router: /login
 const loginRouter = require('./controller/login');
@@ -31,9 +36,9 @@ app.use('/signup', signUpRouter)
 const dashboardRouter = require('./controller/dashboard/home')
 app.use('/dashboard', dashboardRouter)
 
-app.get('/', (req, res) =>{
-    res.render("home")
-})
+// Homer Router: /
+const homeRouter = require('./controller/home')
+app.use(homeRouter)
 
 // 404 page
 app.use((req, res) =>{
@@ -41,7 +46,7 @@ app.use((req, res) =>{
 })
 
 // Creating the tables (sync) and listen to one port
-sequelize.sync({alter: false}).then(() => {
+sequelize.sync({ alter: true }).then(() => {
     app.listen(PORT, () => console.log(`Listen to: http://localhost:${PORT}`))
     console.log('Added Tables')
 });

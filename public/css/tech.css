@@ -1,3 +1,7 @@
+:root{
+    --color1: rgb(41, 32, 32);
+}
+
 *{
     box-sizing: border-box;
     margin: 0;
@@ -12,8 +16,12 @@ li{
     font-size: 18px;
 }
 
+h2{
+    font-size: 20px;
+}
+
 .menu_item:hover{
-    background-color: rgb(41, 32, 32);
+    background-color: var(--color1);
     -webkit-transition: 0.7s ease-out;
     -moz-transition: 0.7s ease-out;
     -o-transition: 0.7s ease-out;
@@ -24,9 +32,13 @@ li{
     display: none;
 }
 
+.box_tech{
+    margin: 0 auto;
+    border: 3px solid var(--color1);
+}
 
 #title:hover{
     background-color: white;
-    color: black
+    color: var(--color1);
 }
 

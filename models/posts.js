@@ -1,8 +1,9 @@
 const {Model, DataTypes} = require('sequelize')
 const sequelize = require('../config/connection')
 
+class Post extends Model{}
 
-const Post = sequelize.define('Post', 
+Post.init(
     {
         id:{
             type: DataTypes.INTEGER,
@@ -26,10 +27,15 @@ const Post = sequelize.define('Post',
                 key: 'id'
             }, 
         },
+        updated_at: {
+            type: DataTypes.DATE,
+            defaultValue: sequelize.fn('now'),
+            allowNull: false,
+        },
     },
     {
         sequelize,
-        timestamps: true,
+        timestamps: false,
         underscored: true,
         modelName: 'post'
     }
