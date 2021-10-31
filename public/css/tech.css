@@ -20,6 +20,25 @@ h2{
     font-size: 20px;
 }
 
+input{
+    width: 300px;
+    height: 30px;
+}
+
+button{
+    background-color: var(--color1);
+    color: white
+}
+
+button:hover{
+    background-color: whitesmoke;
+    color: var(--color1)
+}
+
+label{
+    font-size: 18px;
+}
+
 .menu_item:hover{
     background-color: var(--color1);
     -webkit-transition: 0.7s ease-out;
@@ -38,7 +57,6 @@ h2{
 }
 
 #title:hover{
-    background-color: white;
+    background-color: whitesmoke;
     color: var(--color1);
 }
-
