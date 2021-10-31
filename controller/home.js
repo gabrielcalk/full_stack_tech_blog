@@ -16,11 +16,10 @@ homeRouter.get('/', async (req, res) =>{
             }
         });
 
-        const users = user_data.map((user) => user.get({plain:true}));
         const posts = post_data.map((post) => post.get({plain:true}));
-        
+
         res.render('home', {
-            posts,
+            posts
         })
     } catch(err){
         res.status(500).json(err)

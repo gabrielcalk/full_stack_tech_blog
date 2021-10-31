@@ -46,7 +46,7 @@ app.use((req, res) =>{
 })
 
 // Creating the tables (sync) and listen to one port
-sequelize.sync({ alter: true }).then(() => {
+sequelize.sync({ alter: false }).then(() => {
     app.listen(PORT, () => console.log(`Listen to: http://localhost:${PORT}`))
     console.log('Added Tables')
 });
