@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path')
 const app = express();
 const exphbs = require('express-handlebars');
+const helpers = require('./helper/utilits')
 
 // PORT
 const PORT = process.env.PORT || 3001;
@@ -12,7 +13,7 @@ const User = require('./models/users');
 const sequelize = require('./config/connection');
 
 // Inform Express.js on which template engine to use
-const hbs = exphbs.create({});
+const hbs = exphbs.create({ helpers });
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
