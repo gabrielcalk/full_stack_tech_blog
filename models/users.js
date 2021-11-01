@@ -14,10 +14,6 @@ User.init(
         username: {
             type: DataTypes.STRING,
             allowNull: false,
-            // username can only contains number and character
-            validate:{
-                isAlphanumeric: true,
-            }
         },
         email:{
             type: DataTypes.STRING,
@@ -29,8 +25,8 @@ User.init(
         password:{
             type: DataTypes.STRING,
             allowNull: false,
-            validate:{
-                leg: [8]
+            validate: {
+                len: [8, 100]
             },
         },
     },

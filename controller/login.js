@@ -4,22 +4,21 @@ const User = require('../models/users')
 
 loginRouter.get('/', (req, res) =>{
     res.render('login')
-    // res.write(console.log('hey'))
 });
 
 loginRouter.post('/', async (req, res) =>{
-    if (req.body.user && req.body.email && req.body.password){
-        try{
-            const creat_user = await User.create({
-            user: req.body.user,
-            email: req.body.email,
-            password: req.body.password
-            });
-        } catch(err){
-            res.status(500).send(err);
+    try{
+        const email_info = await User.findOne({
+            where:{email: req.body.answer.email}
+        });
+
+        if(!email_info){
+            res.status(400);
+            return
         }
-    } else{
-        res.write(console.log('hey'))
+        res.status(200);
+    } catch(err){
+        res.status(400).json(err);
     }
 })
 
