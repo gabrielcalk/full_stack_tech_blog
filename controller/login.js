@@ -13,10 +13,10 @@ loginRouter.post('/', async (req, res) =>{
         });
 
         if(!email_info){
-            res.status(400);
+            res.status(400).json({message: 'E-mail or Password Incorrect'});
             return
-        }
-        res.status(200);
+        } 
+        res.status(200).json({message: 'login'});
     } catch(err){
         res.status(400).json(err);
     }

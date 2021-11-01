@@ -2,7 +2,7 @@ const express = require('express');
 const dashboardRouter = express.Router();
 
 dashboardRouter.get('/', (req, res) =>{
-    res.send('dashboard')
+    res.render('dashboard')
 });
 
 dashboardRouter.get('/post', (req, res) => {

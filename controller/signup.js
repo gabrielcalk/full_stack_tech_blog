@@ -8,12 +8,14 @@ signUpRouter.get('/', (req, res) =>{
 
 signUpRouter.post('/', async (req, res) =>{
     try{
+        console.log(req.body)
         const creat_user = await User.create({
-            username: req.body.user,
-            email: req.body.email,
-            password: req.body.password
+            username: req.body.answer_signup.username,
+            email: req.body.answer_signup.email,
+            password: req.body.answer_signup.password
         });
-        res.json(creat_user)
+        
+        res.status(200).json(creat_user)
     } catch(err){
         res.status(500).send(err);
     }

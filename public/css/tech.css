@@ -60,3 +60,11 @@ label{
     background-color: whitesmoke;
     color: var(--color1);
 }
+
+#dash{
+    text-align: center;
+    font-size: 25px;
+    color:whitesmoke;
+    width: 250px;
+    margin: 0 auto;
+}
