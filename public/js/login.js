@@ -22,7 +22,7 @@ button.addEventListener('click', async (e) =>{
             body: JSON.stringify({answer}),
             headers: { 'Content-Type': 'application/json' }
         });
-        console.log(res.ok)
+
         if(res.ok){
             document.location.replace('/dashboard')
         } else{

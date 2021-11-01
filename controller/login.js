@@ -16,7 +16,14 @@ loginRouter.post('/', async (req, res) =>{
             res.status(400).json({message: 'E-mail or Password Incorrect'});
             return
         } 
-        res.status(200).json({message: 'login'});
+
+        const verifyPassword = email_info.checkPassword(req.body.answer.pass);
+
+        if (!verifyPassword){
+            res.status(400).json({message: 'Incorrect Email or Password!'})
+        }
+
+        res.status(200).json({message: 'You Are Logged In!'});
     } catch(err){
         res.status(400).json(err);
     }

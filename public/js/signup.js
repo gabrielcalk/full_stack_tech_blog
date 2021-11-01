@@ -3,7 +3,6 @@ const email = document.querySelector('#email');
 const pass = document.querySelector('#pass');
 const button = document.querySelector('#button');
 
-
 button.addEventListener('click', async (e) =>{
     e.preventDefault()
     const user_value = user.value.trim();
