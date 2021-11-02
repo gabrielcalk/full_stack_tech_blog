@@ -9,9 +9,19 @@ dashboardRouter.get('/', async (req, res) =>{
             res.redirect('/login')
             return
         }
-        const user_post = await User.findByPk(req.session.user_id)
- 
-        res.render('dashboard', {layout:false})
+        const user_posts = await Post.findAll({
+            where:{
+                user_id: req.session.user_id,
+            }
+        });
+
+        const posts = user_posts.map((post) => post.get({ plain: true }));
+        
+        res.render('dashboard', {
+            layout:false,
+            posts,
+            logged_in: true
+        });
     }catch(err){
         res.status(500).json({message:'Erro trying ot get the dashboard'})
     }
