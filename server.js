@@ -5,6 +5,7 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const helpers = require('./helper/utilits');
 
+//Setting the connect-session with session (storage on dataBase the session)
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 
@@ -15,6 +16,19 @@ const PORT = process.env.PORT || 3001;
 const Post = require('./models/posts');
 const User = require('./models/users');
 const sequelize = require('./config/connection');
+
+//Setting the session
+const sess = {
+    secret: 'Super secret secret',
+    cookie: {},
+    resave: false,
+    saveUninitialized: true,
+    store: new SequelizeStore({
+      db: sequelize
+    })
+  };
+
+app.use(session(sess));
 
 // Inform Express.js on which template engine to use
 const hbs = exphbs.create({ helpers });

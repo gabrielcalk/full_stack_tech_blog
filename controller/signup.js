@@ -15,7 +15,11 @@ signUpRouter.post('/', async (req, res) =>{
             password: req.body.answer_signup.password
         });
         
-        res.status(200).json(creat_user)
+        req.session.save(() =>{
+            req.session.user_id = creat_user.id;
+            req.session.logged_in = true;
+            res.status(200).json(creat_user)
+        });
     } catch(err){
         res.status(500).send(err);
     }
