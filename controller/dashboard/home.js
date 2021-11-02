@@ -28,7 +28,19 @@ dashboardRouter.post('/', async(req, res) =>{
 })
 
 dashboardRouter.get('/post', (req, res) => {
-    res.send('dashboard - post')
+    res.render('dashboard-post')
+});
+
+dashboardRouter.post('/post', async (req, res) => {
+    try{
+        const post_data = await Post.create({
+            ...req.body.answer,
+            user_id: req.session.user_id
+        });
+        res.status(200).json(post_data);
+    }catch(err){
+        res.status(500).json({message: 'error: could not created the post'})
+    }
 });
 
 dashboardRouter.get('/update', (req, res) =>{

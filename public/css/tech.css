@@ -68,3 +68,11 @@ label{
     width: 250px;
     margin: 0 auto;
 }
+
+#logout{
+    cursor: pointer;
+}
+
+.link{
+    color: whitesmoke
+}
