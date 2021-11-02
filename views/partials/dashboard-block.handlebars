@@ -25,12 +25,12 @@
     <main>
     <h2 class="mt-4 border border-dark rounded bg-primary p-2" id="dash">Your Dashboard</h2>
     {{#each posts}}
-    <section class="w-75 mt-4 box_tech">
-        <div class="d-flex justify-content-between align-items-center bg-dark">
-            <h2 class="text-white px-3 pt-1">{{this.title}}</h2>
-            <p class="text-white px-3 pt-2">Posted by {{this.user.username}} on </p>
+    <section data-post="{{this.id}}" class="w-75 mt-4 box_tech post">
+        <div data-post="{{this.id}}" class="d-flex justify-content-between align-items-center bg-dark">
+            <h2 data-post="{{this.id}}" class="text-white px-3 pt-1">{{this.title}}</h2>
+            <p data-post="{{this.id}}" class="text-white px-3 pt-2">Posted by You</p>
         </div>
-        <p class="px-3 pt-2">{{this.description}}</p>
+        <p data-post="{{this.id}}" class="px-3 pt-2">{{this.description}}</p>
     </section>
     {{/each}}
     <section class="d-flex justify-content-center">

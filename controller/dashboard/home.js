@@ -16,7 +16,7 @@ dashboardRouter.get('/', async (req, res) =>{
         });
 
         const posts = user_posts.map((post) => post.get({ plain: true }));
-        
+
         res.render('dashboard', {
             layout:false,
             posts,
@@ -53,8 +53,30 @@ dashboardRouter.post('/post', async (req, res) => {
     }
 });
 
-dashboardRouter.get('/update', (req, res) =>{
-    res.send('dasboard - update')
+dashboardRouter.put('/update', async (req, res) => {
+
+});
+
+post_array = []
+dashboardRouter.post('/update/id', async (req, res) =>{
+    post_array.push(req.body.id_post)
+    if(post_array.length >= 0){
+        res.status(200).json({message: 'success'})
+    }
+});
+
+dashboardRouter.get('/update', async (req, res) =>{
+    const post_input = await Post.findOne({
+        where:{
+            id: post_array[0]
+        }
+    })
+    post_array = []
+    const post_input_data = post_input.get({plain:true})
+
+    res.render('update', {
+        post_input_data
+    })
 });
 
 module.exports = dashboardRouter;

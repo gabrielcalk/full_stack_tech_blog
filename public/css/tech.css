@@ -76,3 +76,7 @@ label{
 .link{
     color: whitesmoke
 }
+
+.post{
+    cursor: pointer;
+}
