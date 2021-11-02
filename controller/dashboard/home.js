@@ -53,10 +53,6 @@ dashboardRouter.post('/post', async (req, res) => {
     }
 });
 
-dashboardRouter.put('/update', async (req, res) => {
-
-});
-
 post_array = []
 dashboardRouter.post('/update/id', async (req, res) =>{
     post_array.push(req.body.id_post)
@@ -71,12 +67,28 @@ dashboardRouter.get('/update', async (req, res) =>{
             id: post_array[0]
         }
     })
-    post_array = []
+    
     const post_input_data = post_input.get({plain:true})
 
     res.render('update', {
         post_input_data
     })
+});
+
+dashboardRouter.put('/update', async (req, res) => {
+    try{
+        const post_update = await Post.update({
+            title: req.body.title,
+            description: req.body.description,
+            where:{
+                id: post_array[0]
+            }
+        })
+        res.status(200).send('sucess')
+        post_array = []
+    }catch(err){
+        
+    }   
 });
 
 module.exports = dashboardRouter;
