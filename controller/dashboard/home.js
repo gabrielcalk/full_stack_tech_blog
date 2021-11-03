@@ -3,6 +3,11 @@ const dashboardRouter = express.Router();
 const User = require('../../models/users')
 const Post = require('../../models/posts')
 
+/**
+ * @function
+ * Show all the users post
+ * Router: /dashboard
+ */
 dashboardRouter.get('/', async (req, res) =>{
     try{
         if(!req.session.logged_in){
@@ -27,6 +32,11 @@ dashboardRouter.get('/', async (req, res) =>{
     }
 });
 
+/**
+ * @function
+ * Show all the users post
+ * Router: /dashboard
+ */
 dashboardRouter.post('/', async(req, res) =>{
     try{
         if (req.session.logged_in) {
