@@ -75,16 +75,21 @@ dashboardRouter.get('/update', async (req, res) =>{
 
 dashboardRouter.put('/update', async (req, res) => {
     try{
-        const post_update = await Post.update({
-            title: req.body.title,
-            description: req.body.description,
-            where:{
-                id: req.session.post_id
-            }
-        })
+        const {title, description} = req.body
+        const post_update = await Post.update(
+            {
+            title,
+            description,
+            },
+            {
+                where:{
+                    id: req.session.post_id
+                },
+            },
+        );
         res.status(200).send('sucess')
     }catch(err){
-        
+        res.status(500).json({message: "error: could not update"})
     }   
 });
 
