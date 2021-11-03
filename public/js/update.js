@@ -5,20 +5,24 @@ const content_update = document.querySelector('#content_update');
 
 
 const updatePage = async () =>{
-    const title_update_value = title_update.value.trim()
-    const content_update_value = content_update.value.trim()
-    const res = await fetch('/dashboard/update', {
-        method: 'PUT',
-        body: JSON.stringify({
-            title: title_update_value,
-            description: content_update_value
-        }),
-        headers: { 'Content-Type': 'application/json' }
-        });
-    if(res.ok){
-        document.location.replace('/dashboard/')
-    } else{
-        alert('Please, try again')
+    try{
+        const title_update_value = title_update.value.trim()
+        const content_update_value = content_update.value.trim()
+        const res = await fetch('/dashboard/update', {
+            method: 'PUT',
+            body: JSON.stringify({
+                title: title_update_value,
+                description: content_update_value
+            }),
+            headers: { 'Content-Type': 'application/json' }
+            });
+        if(res.ok){
+            document.location.replace('/dashboard/')
+        } else{
+            alert('Please, try again')
+        }
+    }catch(err){
+        console.log(err)
     }
 }
 
