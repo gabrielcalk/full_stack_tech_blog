@@ -1,8 +1,14 @@
+// Getting the username, email, password and button from html
 const user = document.querySelector('#user');
 const email = document.querySelector('#email');
 const pass = document.querySelector('#pass');
 const button = document.querySelector('#button');
 
+/**
+ * @funcion Signup
+ * Starting this function after the user click on signup
+ * We are posting the inputs to the back
+ */
 button.addEventListener('click', async (e) =>{
     try{
         e.preventDefault()
@@ -16,7 +22,6 @@ button.addEventListener('click', async (e) =>{
                 email: email_value,
                 password: pass_value,
             };
-
             const res = await fetch('/signup', {
                 method: 'POST',
                 body: JSON.stringify({answer_signup}),

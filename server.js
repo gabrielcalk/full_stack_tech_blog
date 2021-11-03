@@ -35,6 +35,9 @@ const hbs = exphbs.create({ helpers });
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
+// Letting us tu use json
+// Define to only look to the request when he pass the content type
+// Letting us to use static files
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -42,10 +45,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Login Router: /login
 const loginRouter = require('./controller/login');
 app.use('/login', loginRouter);
-
-// Post Router: /post
-const postRouter = require('./controller/post');
-app.use('/post', postRouter)
 
 // Signup Router: /signup
 const signUpRouter = require('./controller/signup');

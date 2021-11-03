@@ -4,7 +4,7 @@ const User = require('../../models/users')
 const Post = require('../../models/posts')
 
 /**
- * @function
+ * @function dashboardRouter.get
  * Show all the users post
  * Router: /dashboard
  */
@@ -33,8 +33,8 @@ dashboardRouter.get('/', async (req, res) =>{
 });
 
 /**
- * @function
- * Show all the users post
+ * @function dashboardRouter.post
+ * destroy the loggin session
  * Router: /dashboard
  */
 dashboardRouter.post('/', async(req, res) =>{
@@ -49,12 +49,22 @@ dashboardRouter.post('/', async(req, res) =>{
     } catch(err){
         res.status(500).send(err)
     }
-})
+});
 
+/**
+ * @function dashboardRouter.get
+ * Render the page to create new post
+ * Router: /dashboard/post
+ */
 dashboardRouter.get('/post', (req, res) => {
     res.render('dashboard-post')
 });
 
+/**
+ * @function dashboardRouter.post
+ * Create a new post
+ * Router: /dashboard/post
+ */
 dashboardRouter.post('/post', async (req, res) => {
     try{
         const post_data = await Post.create({
@@ -67,7 +77,11 @@ dashboardRouter.post('/post', async (req, res) => {
     }
 });
 
-
+/**
+ * @function dashboardRouter.post
+ * Get the post id and add to the session
+ * Router: /dashboard/post/id
+ */
 dashboardRouter.post('/update/id', async (req, res) =>{
     try{
         req.session.post_id = req.body.id_post
@@ -77,6 +91,11 @@ dashboardRouter.post('/update/id', async (req, res) =>{
     }
 });
 
+/**
+ * @function dashboardRouter.get
+ * render the update page with the post that the user want to update
+ * Router: /dashboard/update
+ */
 dashboardRouter.get('/update', async (req, res) =>{
     try{
         const post_input = await Post.findOne({
@@ -94,6 +113,11 @@ dashboardRouter.get('/update', async (req, res) =>{
     }
 });
 
+/**
+ * @function dashboardRouter.put
+ * Update the post
+ * Router: /dashboard/update
+ */
 dashboardRouter.put('/update', async (req, res) => {
     try{
         const {title, description} = req.body
@@ -114,4 +138,7 @@ dashboardRouter.put('/update', async (req, res) => {
     }   
 });
 
+/**
+ * @exports dashboardRouter
+ */
 module.exports = dashboardRouter;

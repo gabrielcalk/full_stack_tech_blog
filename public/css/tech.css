@@ -1,3 +1,6 @@
+/* Defining colors */
+
+/* This file will be used on all the pages */
 :root{
     --color1: rgb(41, 32, 32);
 }

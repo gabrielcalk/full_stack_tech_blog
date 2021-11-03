@@ -2,6 +2,11 @@ const express = require('express')
 const homeRouter = express.Router()
 const {Post, User} = require('../models/associations')
 
+/**
+ * @function homeRouter.get
+ * Render all the posts (home page)
+ * Router: /
+ */
 homeRouter.get('/', async (req, res) =>{
     try{
         const post_data = await Post.findAll({
@@ -12,9 +17,8 @@ homeRouter.get('/', async (req, res) =>{
                 },
             ],
         });
-
-        const posts = post_data.map((post) => post.get({plain:true}));
-
+        const posts = post_data.map((post) => post.get({plain:true}));    
+// Render the page
         res.render('home', {
             posts,
             logged_in: req.session.logged_in 
@@ -24,4 +28,7 @@ homeRouter.get('/', async (req, res) =>{
     }
 });
 
+/**
+ * @exports homeRouter
+ */
 module.exports = homeRouter;

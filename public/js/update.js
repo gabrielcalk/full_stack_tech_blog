@@ -1,9 +1,13 @@
-const id_post = JSON.parse(localStorage.getItem('id_post'));
+// getting the post button, title value and description from the html
 const post = document.querySelector('#post');
 const title_update = document.querySelector('#title_update');
 const content_update = document.querySelector('#content_update');
 
-
+/**
+ * @funcion updatepage
+ * Starting this function after the user click to update the post
+ * We are passing the title and description of this post to the back
+ */
 const updatePage = async () =>{
     try{
         const title_update_value = title_update.value.trim()
@@ -26,4 +30,5 @@ const updatePage = async () =>{
     }
 }
 
+// Adding event on the post button
 post.addEventListener('click', updatePage)
