@@ -8,7 +8,6 @@ const helpers = require('./helper/utilits');
 //Setting the connect-session with session (storage on dataBase the session)
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-
 // PORT
 const PORT = process.env.PORT || 3001;
 
@@ -19,7 +18,7 @@ const sequelize = require('./config/connection');
 
 //Setting the session
 const sess = {
-    secret: 'Super secret secret',
+    secret: process.env.DB_KEY,
     cookie: {},
     resave: false,
     saveUninitialized: true,
