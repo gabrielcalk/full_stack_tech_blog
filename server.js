@@ -4,6 +4,7 @@ const app = express();
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const helpers = require('./helper/utilits');
+require('dotenv').config();
 
 //Setting the connect-session with session (storage on dataBase the session)
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
