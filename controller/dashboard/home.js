@@ -28,13 +28,17 @@ dashboardRouter.get('/', async (req, res) =>{
 });
 
 dashboardRouter.post('/', async(req, res) =>{
-    if (req.session.logged_in) {
-        req.session.destroy(() => {
-          res.status(204).end();
-        });
-      } else {
-        res.status(404).end();
-      }
+    try{
+        if (req.session.logged_in) {
+            req.session.destroy(() => {
+            res.status(204).end();
+            });
+        } else {
+            res.status(404).end();
+        }
+    } catch(err){
+        res.status(500).send(err)
+    }
 })
 
 dashboardRouter.get('/post', (req, res) => {
@@ -55,22 +59,29 @@ dashboardRouter.post('/post', async (req, res) => {
 
 
 dashboardRouter.post('/update/id', async (req, res) =>{
+    try{
         req.session.post_id = req.body.id_post
-    res.status(200).send('sucess')
+        res.status(200).send('sucess')
+    } catch(err){
+        res.status(500).send(err)
+    }
 });
 
 dashboardRouter.get('/update', async (req, res) =>{
-    const post_input = await Post.findOne({
-        where:{
-            id: req.session.post_id
-        }
-    })
-    
-    const post_input_data = post_input.get({plain:true})
-    post_array = []
-    res.render('update', {
-        post_input_data
-    })
+    try{
+        const post_input = await Post.findOne({
+            where:{
+                id: req.session.post_id
+            }
+        })
+        const post_input_data = post_input.get({plain:true})
+        post_array = []
+        res.render('update', {
+            post_input_data
+        })
+    }catch(err){
+        res.status(500).send(err)
+    }
 });
 
 dashboardRouter.put('/update', async (req, res) => {
