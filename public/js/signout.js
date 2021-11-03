@@ -1,5 +1,5 @@
 const logout_html = document.getElementById('#logout')
-const post = document.querySelector('.post')
+const post = document.querySelectorAll('.post')
 
 const logout = async () =>{
     const res = await fetch('/dashboard', {
@@ -24,4 +24,6 @@ const nextPage = async (e) =>{
 }
 
 logout_html.addEventListener('click', logout)
-post.addEventListener('click', nextPage)
+for(i = 0; i < post.length; i++){
+  post[i].addEventListener('click', nextPage)
+}

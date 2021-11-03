@@ -53,23 +53,21 @@ dashboardRouter.post('/post', async (req, res) => {
     }
 });
 
-post_array = []
+
 dashboardRouter.post('/update/id', async (req, res) =>{
-    post_array.push(req.body.id_post)
-    if(post_array.length >= 0){
-        res.status(200).json({message: 'success'})
-    }
+        req.session.post_id = req.body.id_post
+    res.status(200).send('sucess')
 });
 
 dashboardRouter.get('/update', async (req, res) =>{
     const post_input = await Post.findOne({
         where:{
-            id: post_array[0]
+            id: req.session.post_id
         }
     })
     
     const post_input_data = post_input.get({plain:true})
-
+    post_array = []
     res.render('update', {
         post_input_data
     })
@@ -81,11 +79,10 @@ dashboardRouter.put('/update', async (req, res) => {
             title: req.body.title,
             description: req.body.description,
             where:{
-                id: post_array[0]
+                id: req.session.post_id
             }
         })
         res.status(200).send('sucess')
-        post_array = []
     }catch(err){
         
     }   
