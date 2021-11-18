@@ -20,14 +20,14 @@ This is a project involving the front-end and the back-end. In this application,
 
 
 ## *Technologies*
-JavaScript;
-Html;
-CSS;
-BOOTSTRAP;
-Handlebars;
-NODE.js (Express, Express-session, connect-session-sequelize, Sequelize, mysql2, Dotenv);
-MYSQL;
-HEROKU
+- JavaScript;
+- Html;
+- CSS;
+- BOOTSTRAP;
+- Handlebars;
+- NODE.js (Express, Express-session, connect-session-sequelize, Sequelize, mysql2, Dotenv);
+- MYSQL;
+- HEROKU
 
 
 
